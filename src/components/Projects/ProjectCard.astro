@@ -1,0 +1,24 @@
+---
+export interface Props {
+    title: string;
+    description: string;
+    showMoreBtn: boolean;
+}
+
+const {
+	title, description, showMoreBtn
+} = Astro.props;
+---
+
+
+
+<div class="card lg:card-side bg-base-100 shadow-xl">
+  <figure><img src="https://placeimg.com/300/300/arch" alt="Album"/></figure>
+  <div class="card-body">
+    <h2 class="card-title">New album is released!</h2>
+    <p>Click the button to listen on Spotiwhy app.</p>
+    <div class="card-actions justify-end">
+      <button class="btn btn-primary"><a href={"#"} class={"decoration-inherit text-inherit"}>Read More...</a></button>
+    </div>
+  </div>
+</div>

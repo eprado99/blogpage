@@ -1,0 +1,23 @@
+---
+export interface Props {
+    title: string;
+    description: string;
+    pubDate: string;
+    postUrl: string;
+}
+
+const {
+	title, description, pubDate, postUrl
+} = Astro.props;
+---
+<div class="card w-96 bg-base-100 shadow-xl">
+    <div class="card-body">
+      <span class={"text-6xl font-semibold text-gray-500 dark:text-gray-300"}>{ new Date(pubDate).getDate() }</span>
+      <span class={"text-gray-400"}>{ `${new Intl.DateTimeFormat("en-US", {weekday: "short"}).format(new Date(pubDate))} ${new Intl.DateTimeFormat('en-us', { month: 'long'}).format(new Date(pubDate))} ${new Date(pubDate).getFullYear()}` }</span>
+      <h2 class="card-title">{title}</h2>
+      <p>{description}</p>
+      <div class="card-actions justify-end">
+        <button class="btn btn-primary"><a href={postUrl} class={"decoration-inherit text-inherit"}>Read More...</a></button>
+      </div>
+    </div>
+</div>

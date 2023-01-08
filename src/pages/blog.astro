@@ -1,0 +1,50 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HomePostList from '../components/Posts/HomePostList.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
+
+// Use Astro.glob() to fetch all posts, and then sort them by date.
+const posts = (await Astro.glob('./blog/*.{md,mdx}')).sort(
+	(a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
+);
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body class={"md:container mx-auto"}>
+		<Header />
+		<main class={"mt-8"}>
+			<HomePostList posts={posts}></HomePostList>
+			<!-- <section>
+				<ul class={"flex flex-wrap gap-7"}>
+					{
+						posts.map((post) => (
+							// 
+
+							<li class={"py-8 mx-auto bg-white drop-shadow-2xl rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"}>
+								<div class={"mx-2"}>
+									<div class={"flex flex-col w-full text-center"}>
+										<span class={"text-6xl font-semibold text-gray-500 dark:text-gray-300"}>{ new Date(post.frontmatter.pubDate).getDate() }</span>
+										<span class={"text-gray-400"}>{ `${new Intl.DateTimeFormat("en-US", {weekday: "short"}).format(new Date(post.frontmatter.pubDate))} ${new Intl.DateTimeFormat('en-us', { month: 'long'}).format(new Date(post.frontmatter.pubDate))} ${new Date(post.frontmatter.pubDate).getFullYear()}` }</span>
+									</div>
+									<div class={"my-2 text-center w-full max-w-md flex flex-col space-y-2"}>
+										<h1 class={"py-1 text-xl text-black"}>{post.frontmatter.title}</h1>
+										<p class={"break-words"}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum facere rem explicabo veniam excepturi iure soluta, odio fugit deleniti corporis porro maiores sed suscipit ut laborum quibusdam ullam dignissimos pariatur.</p>
+										<button class="max-w-sm mx-auto px-4 py-1 text-sm text-cyan-700 font-semibold rounded-full border border-cyan-200 hover:text-white hover:bg-cyan-500 shadow-lg hover:shadow-cyan-500/50 hover:border-transparent focus:outline-none"><a href={post.url}>Read More...</a></button>
+									</div>
+									
+								</div>
+							</li>
+						))
+					}
+				</ul>
+			</section> -->
+		</main>
+		<Footer />
+	</body>
+</html>
