@@ -13,6 +13,7 @@ import image from "@astrojs/image";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
-  integrations: [mdx(), sitemap(), react(), tailwind(), image()]
+    site: 'https://eprado99.github.io',
+    base: 'blogpage',
+    integrations: [mdx(), sitemap(), react(), tailwind(), image()]
 });
