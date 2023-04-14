@@ -11,17 +11,19 @@ import PageLayout from '../layouts/PageLayout.astro';
 
 const posts = await Astro.glob('./blog/*.md')
 const theme = localStorage.getItem('theme')
+const projects = await Astro.glob('./projects/*.md')
+
 ---
 
 <PageLayout>
 	<main class={"mt-8"}>
-		<button data-toggle-theme="dark,light" data-act-class="ACTIVECLASS">HEY</button>
+		<!-- <button data-toggle-theme="dark,light" data-act-class="ACTIVECLASS">HEY</button> -->
 		<ThemeSelector></ThemeSelector>
 		<Hero />
 		<h1 class={"text-3xl font-bold font-mono"}>Latest projects</h1>
-		<HomeProjectList></HomeProjectList>
-		<h1 class={"text-3xl font-bold font-mono"}>Latest blog posts</h1>
-		<HomePostList posts={posts}></HomePostList>
+		<HomeProjectList projects={projects}></HomeProjectList>
+		<!-- <h1 class={"text-3xl font-bold font-mono"}>Latest blog posts</h1>
+		<HomePostList posts={posts}></HomePostList> -->
 	</main>
 </PageLayout>
 

@@ -1,10 +1,11 @@
 ---
 import ProjectCard from "./ProjectCard.astro";
+const { projects } = Astro.props
 ---
 <section class={"my-10"}>
     <div class={"grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2"}>
-        {[1,2,3].map((post: any) => (
-            <ProjectCard title={"My Project"} description={"Whats up"} showMoreBtn={false}></ProjectCard>
+        {projects.map((project: any) => (
+            <ProjectCard title={project.frontmatter.title} description={project.frontmatter.description} showMoreBtn={project.frontmatter.showMoreBtn}></ProjectCard>
         ))}
     </div>
 </section>
